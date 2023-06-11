@@ -1,0 +1,74 @@
+@page
+@model TestWebApp.Pages.Product.Index
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Products</title>
+</head>
+<body>
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Product List</h2>
+        </div>
+        <div class="col-6">
+
+        </div>
+    </div>
+
+    <br/><br/>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Product Id</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Unit Price</th>
+            <th scope="col">Units In Stock</th>
+            <th scope="col">Categories</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <th scope="row">@product.ProductId</th>
+                <td>@product.ProductName</td>
+                <td>@product.UnitPrice</td>
+                <td>@product.UnitsInStock</td>
+                <td>
+                    @foreach (var cate in @product.ProductCategories)
+                    {
+                        @cate.Category.CategoryName
+                        <form method="post">
+                            <input asp-for="@Model.ProductCategory.ProductId" value="@product.ProductId" type="hidden"/>
+                            <input asp-for="@Model.ProductCategory.CategoryId" value="@cate.CategoryId" type="hidden"/>
+                            <button type="submit" class="btn-primary">Delete</button>
+                        </form>
+                        <br/>
+                    }
+                </td>
+                <td>
+                    <a href="/Product/Update/@product.ProductId" class="btn btn-primary">Edit</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <br/>
+    <div class="col-6">
+        <a asp-page="create" class="btn btn-primary">Create</a>
+    </div>
+    <br/>
+    <div class="col-6">
+        <a asp-page="addCategory" class="btn btn-primary">Add Category</a>
+    </div>
+</div>
+</body>
+</html>

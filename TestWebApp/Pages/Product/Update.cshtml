@@ -1,0 +1,37 @@
+@page "{id:int}"
+@model TestWebApp.Pages.Product.Update
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Update Product</title>
+</head>
+<body>
+<form method="post">
+    <div class="form-group">
+            <label asp-for="Product.ProductId">Product Id</label>
+            <input asp-for="Product.ProductId" type="text" class="form-control" value="@Model.Product.ProductId" contenteditable="false">
+        </div>
+    <div class="form-group">
+        <label asp-for="Product.ProductName">Product name</label>
+        <input asp-for="Product.ProductName" type="text" class="form-control" value="@Model.Product.ProductName" placeholder="name">
+    </div>
+    <div class="form-group">
+        <label asp-for="Product.UnitPrice">Unit price</label>
+        <input asp-for="Product.UnitPrice" class="form-control" value="@Model.Product.UnitPrice" placeholder="unit price">
+    </div>
+    <div class="form-group">
+        <label asp-for="Product.UnitsInStock">Units in stock</label>
+        <input asp-for="Product.UnitsInStock" class="form-control" value="@Model.Product.UnitsInStock" placeholder="units in stock">
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="width: 150px" asp-page-handler="Update"> Update</button>
+    <button type="submit" class="btn btn-danger" style="width: 150px"  asp-page-handler="Delete"> Delete</button>
+</form>
+</body>
+</html>

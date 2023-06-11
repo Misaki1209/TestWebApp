@@ -1,0 +1,36 @@
+@page
+@using TestWebApp.Models
+@model TestWebApp.Pages.Product.AddCategory
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Product - Category</title>
+</head>
+<body>
+<div>
+    <form method="post">
+        <select asp-for="ProductCategory.ProductId" class="form-select" aria-label="Default select example">
+            @foreach (var product in @Model.Products)
+            {
+                <option value="@product.ProductId">@product.ProductName</option>
+            }
+        </select>
+        <br/>
+        <select asp-for="ProductCategory.CategoryId" class="form-select" aria-label="Default select example">
+            @foreach (var cate in @Model.Categories)
+            {
+                <option value="@cate.CategoryId">@cate.CategoryName</option>
+            }
+        </select>
+        <button type="submit" class="btn btn-primary" style="width: 150px"> Create</button>
+    </form>
+
+</div>
+</body>
+</html>
